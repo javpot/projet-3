@@ -7,17 +7,16 @@ from objects.Button import Button
 from settings import *
 from images import *
 
+
 class Intro:
     def __init__(self, game):
         self.game = game
 
-        start = Button('start', 400, 275, 300, 100)
-        guide = Button('guide', 400, 400, 300, 100)
-        about = Button('about', 400, 525, 300, 100)
+        start = Button("start", 400, 275, 300, 100)
+        guide = Button("guide", 400, 400, 300, 100)
+        about = Button("about", 400, 525, 300, 100)
 
         while self.game.status == INTRO:
-            self.game.screen.blit(INTRO_BG, ORIGIN)
-
             for event in pg.event.get():
                 pos = pg.mouse.get_pos()
 
@@ -25,7 +24,7 @@ class Intro:
                     print("You quit in the middle of the game!")
                     self.game.running = False
                     quit()
-                
+
                 # mouse click
                 if event.type == pg.MOUSEBUTTONDOWN:
                     if start.isOver(pos):
@@ -41,6 +40,7 @@ class Intro:
                     guide.isOver(pos)
                     about.isOver(pos)
 
+            self.game.screen.blit(INTRO_BG, ORIGIN)
             self.game.screen.blit(start.image, (start.x, start.y))
             self.game.screen.blit(guide.image, (guide.x, guide.y))
             self.game.screen.blit(about.image, (about.x, about.y))
